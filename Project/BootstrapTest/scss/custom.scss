@@ -1,0 +1,45 @@
+$primary: #1A1D53;
+$secondary: #09D3AF;
+$body-bg: $primary;
+
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.navbar {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container-fluid img {
+    height: auto;
+    max-width: 10%;
+}
+
+.logo-name{
+    color: $secondary;
+}
+
+.form-label {
+    font-family: 'Poppins', sans-serif;
+    color: $secondary;
+}
+
+.bx-menu{
+    color: $secondary;
+}
+
+#loginText {
+    font-family: 'Poppins', sans-serif;
+    color: $secondary;
+}
+
+#inputEmail {
+    font-family: 'Poppins', sans-serif;
+    color: antiquewhite;
+}
+
+#inputPassword {
+    font-family: 'Poppins', sans-serif;
+    color: antiquewhite;
+    margin-bottom: 0.2cm;
+}
+
