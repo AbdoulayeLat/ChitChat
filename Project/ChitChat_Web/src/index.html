@@ -8,9 +8,7 @@
     <title>ChitChat-Login</title>
     <link rel="stylesheet" href="../scss/custom.scss">
     <!-- JS Import -->
-    <script src="./index.js"></script>
-    <!-- Login with Google -->
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script type="module" src="./index.js"></script>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,26 +60,16 @@
                     <div class="container">
                         <h3 class="text-center pb-3" id="loginText">Sign-In</h3>
                         <form class="pb-2">
-                            <div class="mb-3">
-                                <label for="inputEmail" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="inputEmail">
-                            </div>
-                            <div class="mb-2">
-                                <label for="inputPassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword">
-                                <a href="#" class="text-white"
-                                    style="font-family: 'Poppins', sans-serif; font-size: small;">Forgot your
-                                    password? <span class="text-secondary">Click Here!</span></a>
+                            <p class="display-2 text-secondary pt-2"
+                                    style="font-family: 'Poppins', sans-serif; font-size: large;">Enter your phone number</p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">+</span>
+                                <input type="text" class="form-control text-secondary" placeholder="1 1234567899" 
+                                    aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <button type="submit" class="btn btn-secondary d-grid my-2 col-3 ms-auto"
-                                style="font-family: 'Poppins', sans-serif;" id="btnLogin">Login</button>
+                                style="font-family: 'Poppins', sans-serif;" id="btnLogin">LOGIN</button>
                         </form>
-                        <a href="main.html" class="text-white"
-                            style="font-family: 'Poppins', sans-serif; font-size: medium;">Don't have an
-                            account yet? <span class="text-secondary">Sign-Up!</span></a>
-                        <p class="display-2 text-secondary pt-2"
-                            style="font-family: 'Poppins', sans-serif; font-size: large;">Other Sign-In option:</p>
-                        <div class="mt-1" id="my-signin2"></div>
                     </div>
                 </div>
             </div>
@@ -89,32 +77,7 @@
     </section>
 
     <!-- BS5 Script -->
-    <script src="./index.js"></script>
-
-    <!-- Login with Google script -->
-    <script>
-        function onSuccess(googleUser) {
-            console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-        }
-
-        function onFailure(error) {
-            console.log(error);
-        }
-
-        function renderButton() {
-            gapi.signin2.render('my-signin2', {
-                'scope': 'profile email',
-                'width': 240,
-                'height': 40,
-                'longtitle': true,
-                'theme': 'dark',
-                'onsuccess': onSuccess,
-                'onfailure': onFailure
-            });
-        }
-    </script>
-    
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script type="module" src="./index.js"></script>
 </body>
 
 </html>
