@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "749327233673",
+    "project_id": "chit-cae27",
+    "storage_bucket": "chit-cae27.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749327233673:android:9f31c255d2e542d9320c58",
+        "android_client_info": {
+          "package_name": "com.abdoulaye.chitchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749327233673-hj22acigrgouv3agb05fg29g9s00c5me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5615W8jdO_w4iGvmjYkWkDroc1auuXbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749327233673-hj22acigrgouv3agb05fg29g9s00c5me.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "749327233673-dal4650iskrb8v6tl7k249qnfq24jhoc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abdoulaye.chitchat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
