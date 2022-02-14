@@ -14,7 +14,7 @@ const HomeScreen = ({navigation}) => {
         }
         else
           alert("Please enter a 10 digit number");
-    }
+  }
 
   return (
     <View style = {styles.homeScreen}>

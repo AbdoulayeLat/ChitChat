@@ -46,7 +46,7 @@ const OTPScreen = function ({ route: { params: { phoneNumber } }, navigation }) 
     const code = otpArray.join("");
     const response = await confirm.confirm(code);
     if(response){
-      alert("Confirmed"); //When code is confirmed
+      alert("Confirmed"); //When code is confirmed changes here
     }
     } catch(e){
       alert(e);
