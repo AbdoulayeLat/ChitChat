@@ -1,4 +1,4 @@
-package com.chitchat;
+package com.abdoulaye.chitchat;
 
 import android.app.Application;
 import android.content.Context;

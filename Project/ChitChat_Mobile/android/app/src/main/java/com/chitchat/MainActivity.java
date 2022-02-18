@@ -1,4 +1,4 @@
-package com.chitchat;
+package com.abdoulaye.chitchat;
 
 import com.facebook.react.ReactActivity;
 
