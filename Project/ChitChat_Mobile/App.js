@@ -14,10 +14,12 @@ import {
   TextInput,
   ActivityIndicator,
 } from 'react-native';
-import ContactList from './src/screens/ContactList';
+
 import AddChats from './src/screens/AddChats';
-import AddContacts from './src/screens/AddContacts';
+import AddContact from './src/screens/AddContact';
 import AddCall from './src/screens/AddCall';
+import Profile from './src/screens/Profile';
+import MyContacts from './src/screens/MyContacts';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,12 +33,7 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="AddChats" component={AddChats} />
-        <Stack.Screen name="AddContacts" component={AddContacts} />
-        <Stack.Screen
-          name="Contacts"
-          component={ContactList}
-          options={{headerShown: false}}
-        />
+        <Stack.Screen name="AddContact" component={AddContact} />
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -58,6 +55,14 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen name="AddCall" component={AddCall} />
+        <Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="MyContacts" component={MyContacts} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import ContactList from './ContactList';
+import MyContacts from './MyContacts';
 import Discussions from './Discussions';
 import Settings from './Settings';
 import Calls from './Calls';
@@ -18,7 +18,7 @@ const ChatScreen = () => {
       }}>
       <Tab.Screen
         name="Contacts"
-        component={ContactList}
+        component={MyContacts}
         options={{
           tabBarLabel: 'Contacts',
           tabBarIcon: ({color, size}) => (

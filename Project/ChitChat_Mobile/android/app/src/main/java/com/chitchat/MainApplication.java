@@ -1,5 +1,6 @@
 package com.abdoulaye.chitchat;
-
+import java.util.ArrayList;
+import java.util.List;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -12,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
-
+   
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
         @Override

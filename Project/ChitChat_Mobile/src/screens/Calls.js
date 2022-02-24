@@ -17,8 +17,12 @@ const Calls = ({navigation}) => {
             width: 80,
             marginRight: 20,
           }}>
-          <TouchableOpacity onPress={() => navigation.navigate('AddCall')}>
-            <MaterialCommunityIcons name="pencil" size={24} color="#050a9c" />
+          <TouchableOpacity onPress={() => navigation.navigate('MyContacts')}>
+            <MaterialCommunityIcons
+              name="phone-plus"
+              size={24}
+              color="#050a9c"
+            />
           </TouchableOpacity>
         </View>
       ),

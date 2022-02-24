@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useLayoutEffect} from 'react';
+import MyContacts from './MyContacts';
 
 const AddCall = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Calls ',
+      title: 'New Call',
+      headerBackTitle: 'Calls',
       headerStyle: {backgroundColor: '#1f9'},
       headerTitleStyle: {color: '#050a9c'},
       headTintColor: 'black',
@@ -12,7 +14,7 @@ const AddCall = ({navigation}) => {
   }, [navigation]);
   return (
     <View>
-      <Text>AddCall</Text>
+      <Text>Hi </Text>
     </View>
   );
 };
