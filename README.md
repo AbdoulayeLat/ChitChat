@@ -3,7 +3,7 @@
 ## CSI 4900 - Project
 ### Professor
 Amy Felty
-### Superviseur
+### Supervisor
 Stephane Some
 ### Students
 * Ange Joel Adonis
