@@ -44,12 +44,13 @@ recaptchaVerifier.render().then((widgetId) => {
 
 var loginButton = document.getElementById("btnLogin");
 
+// Opens the One-Time-Password Window
 document.getElementById("btnOTP").onclick = () => {
   var phoneNumber = document.getElementById("phoneNumber").value;
   const appVerifier = window.recaptchaVerifier;
   var alertPlaceholder = document.getElementById('OtpAlert'); // Alert for when message has been sent
-  const code = $('#userOTP').val();
-
+  const code = $('input[id="userOTP"]').val();
+  
   signInWithPhoneNumber(auth, phoneNumber, appVerifier)
     .then((confirmationResult) => {
       OTPModal.show();
@@ -57,6 +58,9 @@ document.getElementById("btnOTP").onclick = () => {
         confirmationResult.confirm(code).then((result) => {
           // User signed in successfully.
           const user = result.user;
+          alert("Code has been confirmed", "success");
+        }).catch((error) => {
+          console.log(error);
           alert("Code has been confirmed", "succes")
         }).catch((error) => {
           console.log(error);
@@ -70,3 +74,4 @@ document.getElementById("btnOTP").onclick = () => {
       });    
    });
 }
+
