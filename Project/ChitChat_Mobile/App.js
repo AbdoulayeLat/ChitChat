@@ -4,9 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
-import ResetPassword from './screens/ResetPassword';
 import ChatScreen from './screens/ChatScreen';
-import OTPScreen from './screens/OTPScreen';
 import {
   StyleSheet,
   View,
@@ -22,11 +20,17 @@ import Profile from './screens/Profile';
 import MyContacts from './screens/MyContacts';
 
 const Stack = createNativeStackNavigator();
+console.disableYellowBox = true;
 
 function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Chats"
           component={ChatScreen}
@@ -35,23 +39,8 @@ function App() {
         <Stack.Screen name="AddChats" component={AddChats} />
         <Stack.Screen name="AddContact" component={AddContact} />
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
           name="Registration"
           component={RegistrationScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="ResetPassword"
-          component={ResetPassword}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="OTPScreen"
-          component={OTPScreen}
           options={{headerShown: false}}
         />
         <Stack.Screen name="AddCall" component={AddCall} />

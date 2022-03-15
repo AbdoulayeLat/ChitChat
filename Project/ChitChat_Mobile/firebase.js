@@ -1,5 +1,7 @@
-// Import the functions you need from the SDKs you need
-import * as firebase from "firebase";
+import {initializeApp} from 'firebase/app';
+import { getAuth, signInWithPhoneNumber } from "firebase/auth";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,13 +17,8 @@ const firebaseConfig = {
   measurementId: "G-WT8ML4X9HT"
 };
 
-// Initialize Firebase
-let app;
-if (firebase.app.length === 0){
-    app = firebase.initializeApp(firebaseConfig);
-}else{
-    app = firebase.app();
-}
-const auth = firebase.auth;
+initializeApp(firebaseConfig);
+
+const auth = getAuth();
 
 export {auth};
