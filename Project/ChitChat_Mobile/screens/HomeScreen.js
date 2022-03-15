@@ -1,15 +1,14 @@
-import {View, LogBox, KeyboardAvoidingView, Text, TextInput, Modal, Pressable, StyleSheet, Image, Button} from 'react-native';
+import {View, KeyboardAvoidingView, Text, Platform, TextInput, Modal, TouchableOpacity, StyleSheet, Image, Button} from 'react-native';
 import React, {useState} from 'react';
 import Colors from '../utils/Colors.js';
-import TextInputCustom from '../components/TextInputCustom.js';
 import ButtonCustom from '../components/ButtonCustom.js';
-import { auth } from '../firebase.js';
+import { auth, firestore } from '../firebase.js';
 import { FirebaseRecaptchaVerifierModal, FirebaseRecaptchaBanner } from 'expo-firebase-recaptcha';
 import { initializeApp, getApp } from 'firebase/app';
 import { getAuth, PhoneAuthProvider, signInWithCredential } from 'firebase/auth';
 import { async } from '@firebase/util';
+import { collection, query, where, getDocs, doc, runTransaction } from "firebase/firestore";
 
-LogBox.ignoreLogs(["Warning: AsyncStorage has been extracted from react-native core and will be removed in a future release."]);
 
 const app = getApp();
 
@@ -23,6 +22,10 @@ const HomeScreen = ({navigation}) => {
   const [phoneNumber, addPhoneNumber] = React.useState('+1');
   const [otp, setOTP] = React.useState('')
   const [modalVisible, setModalVisible] = useState(false);
+  
+  
+
+  
   
   const GetOTP = async () => {
     if(phoneNumber && phoneNumber.length > 9){
@@ -54,27 +57,43 @@ const HomeScreen = ({navigation}) => {
       );
       await signInWithCredential(auth, credential);
       setModalVisible(false)
-      alert('Phone authentication successful 👍');
+      const token = auth.currentUser.uid;
+      const userRef = doc(firestore, "users", token);
+
+      const readUser = await runTransaction(firestore, async (transaction) => {
+        const user = await transaction.get(userRef);
+        if (!user.exists()) {
+          navigation.navigate('Registration', {
+            paramKey: phoneNumber,
+            paramToken: token
+          })
+        }else{
+          navigation.navigate('Profile', {
+            paramToken: token
+          })
+        }
+      });
     } catch (err) {
       setModalVisible(false)
-      alert(err.message);
+      console.log(err.message);
     }
   }
 
   return(
     <KeyboardAvoidingView
+      behavior= {(Platform.OS === 'ios')? "padding" : null}
       style= {styles.kbView}
-      behavior = "padding"
     >
     <View style = {styles.homeScreen}>
         <FirebaseRecaptchaVerifierModal
             ref={recaptchaVerifier}
             firebaseConfig={app.options}
             attemptInvisibleVerification
+            androidHardwareAccelerationDisabled
         />
         <Image style={styles.logoImage} source={require("../assets/img/LogoNoBG.png")}/>
         <View style={styles.loginView}>
-          <Text style={styles.loginText}>WELCOME</Text>
+          <Text style={styles.loginText}>WELCOME👋🏽</Text>
           <Text style={styles.textInfo}>Enter Your Phone Number:</Text>
           <TextInput style={styles.textInput} placeholder={'+1 1234567899'}
             onChangeText={(text) => addPhoneNumber(text)}/>
@@ -102,6 +121,7 @@ const HomeScreen = ({navigation}) => {
                  maxLength={6}
               />
               <ButtonCustom text={'LOGIN'} onPress={() => checkOTP()}/>
+              <Button style={styles.txtClose} title='Close' onPress={() => setModalVisible(false)}/>
             </View>
             </KeyboardAvoidingView>
           </View>
@@ -119,6 +139,7 @@ const styles = StyleSheet.create({
     },
     logoImage:{
         resizeMode: 'contain',
+        alignSelf: 'center',
         flex: 1,
         marginTop: 20,
     },
@@ -162,6 +183,11 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       marginTop: 22,
+    },
+    txtClose:{
+      color: Colors.Secondary,
+      fontSize: 20,
+      marginTop: 25,
     },
     modalView: {
       margin: 20,

@@ -20,7 +20,6 @@ import Profile from './screens/Profile';
 import MyContacts from './screens/MyContacts';
 
 const Stack = createNativeStackNavigator();
-console.disableYellowBox = true;
 
 function App() {
   return (
@@ -31,19 +30,11 @@ function App() {
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="Chats"
-          component={ChatScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="AddChats" component={AddChats} />
-        <Stack.Screen name="AddContact" component={AddContact} />
-        <Stack.Screen
-          name="Registration"
-          component={RegistrationScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen name="AddCall" component={AddCall} />
+          <Stack.Screen
+            name="Registration"
+            component={RegistrationScreen}
+            options={{headerShown: false}}
+          />
         <Stack.Screen
           name="Profile"
           component={Profile}
@@ -51,6 +42,14 @@ function App() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="Chats"
+          component={ChatScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen name="AddChats" component={AddChats} />
+        <Stack.Screen name="AddContact" component={AddContact} />
+        <Stack.Screen name="AddCall" component={AddCall} />
         <Stack.Screen name="MyContacts" component={MyContacts} />
       </Stack.Navigator>
     </NavigationContainer>
