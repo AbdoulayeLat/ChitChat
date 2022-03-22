@@ -136,10 +136,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     profilepicture:{
-      overflow: 'hidden',
+      resizeMode: 'contain',
       height: 150,
       width: 150,
-      borderRadius: 150/2,
+      borderRadius: 40,
     },
     imageInfo:{
       color: Colors.GREEN,

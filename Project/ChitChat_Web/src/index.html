@@ -1,110 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChitChat-Login</title>
-    <link rel="stylesheet" href="../scss/custom.scss">
-    <!-- JS Import -->
-    <script type="module" src="./index.js"></script>
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <!-- Firebase Import -->
-    <script type="module" src="./firebase.js"></script>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,400&family=Roboto:ital,wght@1,100;1,400&display=swap"
-        rel="stylesheet">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="../scss/custom.scss" >
 </head>
 
-<body>
-    <!-- Navbar -->
-    <div class="container-fluid bg-secondary">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-                <div class="container-fluid">
-                    <img src="../img/LogoRound.png" class="img-fluid rounded w-25" alt="ChitChat Logo">
-                    <a class="navbar-brand fs-3 px-1 text-primary" href="#">ChitChat</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Settings</a>
-                            </li>
-                          
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">About Us</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+<body class="bg-dark text-center">
+    <img src="../assets/images/LogoNoBG.png" id="loginLogo" class="img-fluid" alt="ChitChat Logo">
+
+    <h3 class="display-5" id="loginText">WELCOME👋🏽</h3>
+    <p class="display-6" id="infoText">Enter your phone number📱</p>
+    <!-- Get OTP -->
+    <div class="container" id="phoneInputGroup">
+        <div class="form-floating pb-3 mx-auto" style="width: 30%;">
+            <input type="text" class=" input-group-text form-control" aria-label="phoneNumber" id="phoneNumber">
+            <label for="floatingInputGrid">Phone Number</label>
         </div>
+        <button class="btn btn-lg col-2 mb-3 mx-auto" type="button" id="btnOTP">GET OTP</button>
     </div>
 
-    <!-- Login container -->
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col py-5">
-                    <img src="../img/login.svg" class="img-fluid" alt="">
-                </div>
-                <div class="col pt-5">
-                    <div class="container">
-                        <h3 class="text-center pb-3" id="loginText">Sign-In</h3>
-                        <form class="pb-2" id="phoneForm">
-                            <p class="display-2 text-secondary pt-2"
-                                    style="font-family: 'Poppins', sans-serif; font-size: large;">Enter your phone number</p>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">#</span>
-                                <input type="text" class="form-control text-secondary" placeholder="+16134567899" 
-                                    aria-label="Username" aria-describedby="basic-addon1" id="phoneNumber">
-                            </div>
-                        </form>
-                        <button class="btn btn-secondary d-grid my-2 col-3 ms-auto"
-                                style="font-family: 'Poppins', sans-serif;" id="btnOTP" data-bs-toggle="modal" data-bs-target="#exampleModal">GET OTP</button>
-                        <!-- ReCAPTCHA Placholder -->
-                        <div id="recaptcha-container"></div>
-                    </div>
-                </div>
-            </div>
+    <!-- ReCAPTCHA Container -->
+    <div id="recaptcha-container"></div>
+
+    <!-- Login using OTP -->
+    <div class="container" style="display: none;"  id="otpContainer">
+        <p class="display-6" id="infoText">Enter your One-Time-Password</p>
+        <div class="form-floating pb-3 mx-auto" style="width: 30%;">
+            <input type="text" class=" input-group-text form-control" aria-label="One-Time-Password" id="OTP">
+            <label for="floatingInputGrid">One-Time-Password</label>
         </div>
-    </section>
-    
-    <!-- OTP Modal for verification code-->
-    <div class="modal fade" id="OTPModal" tabindex="-1" aria-labelledby="One-Time-Password" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">One-Time-Password</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <input id="userOTP" type="text" class="form-control text-secondary" placeholder="Enter the code sent to your phone number" aria-label="One-Time-Password" aria-describedby="Login Button">
-                        <button class="btn btn-outline-secondary" type="button" id="btnLogin">LOGIN</button>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div id="OtpAlert"></div>
-                </div>
-            </div>
-        </div>
+        <div class="alert alert-danger" id="alertCodeFailed" style="display: none;" role="alert">
+            Code Verification Failed!
+         </div>
+        <button class="btn btn-lg col-2 mb-4 mx-auto" type="button" id="btnLogin">LOGIN</button>
     </div>
-  
-    
+
+    <script type="module" src="./index.js" ></script>
 </body>
-
 </html>
