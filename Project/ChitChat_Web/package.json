@@ -2,7 +2,7 @@
   "name": "web_chitchat",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.js", 
   "scripts": {
     "dev": "parcel ./src/index.html",
     "prebuild": "npx rimraf build",

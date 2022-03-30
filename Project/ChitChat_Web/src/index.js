@@ -30,7 +30,7 @@ const signIn = sentCodeID => {
     const credential = PhoneAuthProvider.credential(sentCodeID, code);
     signInWithCredential(auth, credential)
     .then(() => {
-        window.location.href = "./profile.html";
+        window.location.href = "./basechat.html";   // cest ici qu'on change les pages 
         return false;
         // alert("Code verified!🥳")
     })

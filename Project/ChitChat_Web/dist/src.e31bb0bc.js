@@ -25541,7 +25541,8 @@ var signIn = function signIn(sentCodeID) {
   var credential = _auth.PhoneAuthProvider.credential(sentCodeID, code);
 
   (0, _auth.signInWithCredential)(_firebase.auth, credential).then(function () {
-    window.location.href = "./profile.html";
+    window.location.href = ".src/basechat.html"; // cest ici qu'on change les pages 
+
     return false; // alert("Code verified!🥳")
   }).catch(error)(function () {
     console.log(error);
@@ -25579,7 +25580,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49616" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49820" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
