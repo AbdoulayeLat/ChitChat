@@ -23,10 +23,6 @@ const HomeScreen = ({navigation}) => {
   const [otp, setOTP] = React.useState('')
   const [modalVisible, setModalVisible] = useState(false);
   
-  
-
-  
-  
   const GetOTP = async () => {
     if(phoneNumber && phoneNumber.length > 9){
       // The FirebaseRecaptchaVerifierModal ref implements the
@@ -68,7 +64,7 @@ const HomeScreen = ({navigation}) => {
             paramToken: token
           })
         }else{
-          navigation.navigate('Profile', {
+          navigation.replace('Main', {
             paramToken: token
           })
         }
@@ -95,7 +91,7 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.loginView}>
           <Text style={styles.loginText}>WELCOME👋🏽</Text>
           <Text style={styles.textInfo}>Enter Your Phone Number:</Text>
-          <TextInput style={styles.textInput} placeholder={'+1 1234567899'}
+          <TextInput style={styles.textInput} placeholder={'+11234567899'}
             onChangeText={(text) => addPhoneNumber(text)}/>
           <ButtonCustom text={'GET OTP'} onPress={() => GetOTP()}/>
           <Image style={styles.imgLogin} source={require('../assets/img/signin.png')}/>

@@ -2,24 +2,27 @@ import * as React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
-import ChatScreen from './screens/ChatScreen';
+import ChatScreen from './screens/Chat/ChatScreen';
+import Main from './screens/Main';
 import {
   StyleSheet,
   View,
   Text,
   TextInput,
   ActivityIndicator,
+  LogBox
 } from 'react-native';
 
-import AddChats from './screens/AddChats';
-import AddContact from './screens/AddContact';
-import AddCall from './screens/AddCall';
 import Profile from './screens/Profile';
-import MyContacts from './screens/MyContacts';
+import { HeaderBackButton } from 'react-navigation-stack';
+
+LogBox.ignoreAllLogs();
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
   return (
@@ -30,28 +33,25 @@ function App() {
           component={HomeScreen}
           options={{headerShown: false}}
         />
-          <Stack.Screen
-            name="Registration"
-            component={RegistrationScreen}
-            options={{headerShown: false}}
-          />
         <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Chats"
-          component={ChatScreen}
+          name="Registration"
+          component={RegistrationScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="AddChats" component={AddChats} />
-        <Stack.Screen name="AddContact" component={AddContact} />
-        <Stack.Screen name="AddCall" component={AddCall} />
-        <Stack.Screen name="MyContacts" component={MyContacts} />
-      </Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={Main}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options = {{
+            headerShadowVisible: false,
+            headerTintColor: 'white'
+          }}
+        />
+      </Stack.Navigator> 
     </NavigationContainer>
   );
 }

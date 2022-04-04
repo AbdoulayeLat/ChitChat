@@ -69,7 +69,7 @@ const RegistrationScreen = ({route ,navigation}) => {
           phoneNumber: phoneNumber,
           profilepictureURL: url,
         });
-        navigation.navigate('Profile', {paramToken: token});
+        navigation.replace('Main', {paramToken: token});
       } catch (e) {
         console.error("Error adding document: ", e);
         alert("Something went wrong! Please try again.🤕")

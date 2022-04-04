@@ -9,7 +9,8 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { useFonts } from 'expo-font';
 import { Roboto_400Regular, Roboto_500Medium} from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Profile = ({navigation}) => {
   const user = auth.currentUser;
@@ -32,7 +33,7 @@ const Profile = ({navigation}) => {
 
   handleEditable = () => this.setState({ editable: true })
 
-  //Get Data from Firestore DB
+  //Get Data from Firestore DBf
   getDoc(doc(firestore, "users", token)).then(docSnap => {
     if (docSnap.exists()) {
       setFirstname(docSnap.get("firstName"))
@@ -46,37 +47,24 @@ const Profile = ({navigation}) => {
   //Download Profile Picture from Firebase Storage
   getDownloadURL(storageRef)
   .then((url) => {
-    // `url` is the download URL for 'images/stars.jpg'
-
-    // // This can be downloaded directly:
-    // const xhr = new XMLHttpRequest();
-    // xhr.responseType = 'blob';
-    // xhr.onload = (event) => {
-    //   const blob = xhr.response;
-    // };
-    // xhr.open('GET', url);
-    // xhr.send();
-
     setImageURL(url)
-    
   })
   .catch((error) => {
-    // Handle any errors
+    console.log(error)
   });
 
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.pictureView}>
-        <Image style={styles.profilepicture} source={{uri: imageURL}} />
-
         <View style={styles.infoView}>
+          <Image style={styles.profilepicture} source={{uri: imageURL}} />
           <Text style={styles.name}>{firstName + " " + lastName}</Text>
-          <Text style={styles.phoneNumber}>{": "+phoneNumber}</Text>
-
-          <TextInput placeholder='Enter your status'/>
+          <Text style={styles.phoneNumber}>{phoneNumber}</Text>
         </View>
-       
+        <View style={styles.optionView}>
+          
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -89,8 +77,8 @@ const styles = StyleSheet.create({
   },
   profilepicture:{ 
     resizeMode: 'contain',
-    height: 130,
-    width: 130,
+    height: 140,
+    width: 140,
     borderRadius: 40,
     marginVertical: 20,
   },
@@ -98,23 +86,30 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   infoView:{
-    backgroundColor: "rgba( 220, 220, 220, 0.8)",
+    backgroundColor: Colors.Secondary,
+    alignItems:'center',
+    borderRadius: 30,
+    width: "80%",
+    height: 255,
+    marginTop: 15,
+  },
+  optionView:{
+    backgroundColor: Colors.Secondary,
     alignItems:'center',
     borderRadius: 30,
     width: "90%",
-    height: "50%",
-    marginTop: 15,
+    height: 365,
+    marginTop: 20,
   },
   name:{
     fontSize: 30,
     color: Colors.BLACK,
-    fontFamily: 'Roboto_400Regular',
-    marginTop: 15,
+
   },
   phoneNumber:{
     fontSize: 20,
     color: Colors.LIGHT_BLACK,
-    fontFamily: 'Roboto_400Regular',
+
     marginTop: 5,
   },
   editInfo:{
