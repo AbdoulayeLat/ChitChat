@@ -66,15 +66,14 @@ const RegistrationScreen = ({route ,navigation}) => {
           firstName: firstName,
           lastName: lastName,
           email: email,
-          password: password,
           phoneNumber: phoneNumber,
           profilepictureURL: url,
         });
         navigation.replace('Main', { 
-            phoneNumber: phoneNumber,
-            token: token
+            paramKey: phoneNumber,
+            paramToken: token
         });
-      } catch (e) {
+    } catch (e) {
         console.error("Error adding document: ", e);
         alert("Something went wrong! Please try again.🤕")
       }
@@ -107,9 +106,6 @@ const RegistrationScreen = ({route ,navigation}) => {
 
               <Text style={styles.signUpTitle}>Email</Text>
               <TextInput style={styles.textInput} onChangeText={text => setEmail(text)} placeholderTextColor = {Colors.WHITE} placeholder={"example@email.com"} keyboardType={"email-address"}/>
-              
-              <Text style={styles.signUpTitle}>Password</Text>
-              <TextInput style={styles.textInput} onChangeText={text => setPassword(text)} placeholder={"Enter a strong password"} placeholderTextColor = {Colors.WHITE} secureTextEntry={true}/>
               
               <ButtonCustom text='CREATE ✅' onPress={() => uploadProfile(selectedImage.localUri, token+" Profile Picture")}/>
             </View>
