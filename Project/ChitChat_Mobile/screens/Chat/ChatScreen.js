@@ -15,10 +15,8 @@ const ChatScreen = ({ route, navigation }) => {
     const [messages, setMessages] = useState([]);
     const token = auth.currentUser.uid;
     const [imageURL, setImageURL] = React.useState();
-    const [firstName, setFirstname] = React.useState();
-    const [lastName, setLastname] = React.useState();
-    const [phoneNumber, setPhonenumber] = React.useState();
-    const friendPhoneNumber = route.params.phoneNumber;
+    const phoneNumber = route.params.userPhoneNumber;
+    const friendPhoneNumber = route.params.friendPhoneNumber;
     const [friendUID, setFrienUID] = React.useState();
     const storageRef = ref(storage, 'images/ProfilePictures/'+token);
 
@@ -38,17 +36,6 @@ const ChatScreen = ({ route, navigation }) => {
     .catch((error) => {
       console.log(error)
     });
-
-    //Get Data from Firestore DBf
-    getDoc(doc(firestore, "users", token)).then(docSnap => {
-      if (docSnap.exists()) {
-        setFirstname(docSnap.get("firstName"))
-        setLastname(docSnap.get("lastName"))
-        setPhonenumber(docSnap.get("phoneNumber"))
-      } else {
-        console.log("No such document!");
-      }
-    })
 
     useLayoutEffect(() => {
         navigation.setOptions({

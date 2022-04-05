@@ -13,7 +13,9 @@ import { AntDesign } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-const Main = () => {
+const Main = ({route, navigation}) => {
+    const phoneNumber = route.params.paramKey;
+    const token = route.params.paramToken;
   return (
     <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -52,13 +54,13 @@ const Main = () => {
             tabBarIcon: ({focused, color}) => (
                 <Feather name="user" size={30} color={focused ? 'white' : 'gray'} />
             ), 
-        }}/>
+        }} initialParams={{phoneNumber, token}}/>
         <Tab.Screen name='Chat' component={Contact} options={{
             headerShown: false,
             tabBarIcon: ({focused, color}) => (
                 <Ionicons name="chatbox-ellipses" size={30} color={focused ? 'white' : 'gray'} />
             ), 
-        }}/>
+        }} initialParams={{phoneNumber:phoneNumber, token:token}}/>
     </Tab.Navigator>
   )
 }

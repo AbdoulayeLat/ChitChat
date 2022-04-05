@@ -12,12 +12,12 @@ import AppLoading from 'expo-app-loading';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-const Profile = ({navigation}) => {
+const Profile = ({ route, navigation}) => {
   const user = auth.currentUser;
   const token = user.uid;
   const [firstName, setFirstname] = React.useState();
   const [lastName, setLastname] = React.useState();
-  const [phoneNumber, setPhonenumber] = React.useState();
+  const phoneNumber = route.params.phoneNumber;
   const [imageURL, setImageURL] = React.useState();
   const storageRef = ref(storage, 'images/ProfilePictures/'+token);
 
@@ -34,11 +34,10 @@ const Profile = ({navigation}) => {
   handleEditable = () => this.setState({ editable: true })
 
   //Get Data from Firestore DBf
-  getDoc(doc(firestore, "users", token)).then(docSnap => {
+  getDoc(doc(firestore, "users", phoneNumber)).then(docSnap => {
     if (docSnap.exists()) {
       setFirstname(docSnap.get("firstName"))
       setLastname(docSnap.get("lastName"))
-      setPhonenumber(docSnap.get("phoneNumber"))
     } else {
       console.log("No such document!");
     }

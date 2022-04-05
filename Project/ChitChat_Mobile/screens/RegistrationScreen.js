@@ -61,7 +61,8 @@ const RegistrationScreen = ({route ,navigation}) => {
 
   let writeToDB = async (url) => {
     try {
-        await setDoc(doc(firestore, "users", token), {
+        await setDoc(doc(firestore, "users", phoneNumber), {
+          UID: token,
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -69,7 +70,10 @@ const RegistrationScreen = ({route ,navigation}) => {
           phoneNumber: phoneNumber,
           profilepictureURL: url,
         });
-        navigation.replace('Main', {paramToken: token});
+        navigation.replace('Main', { 
+            phoneNumber: phoneNumber,
+            token: token
+        });
       } catch (e) {
         console.error("Error adding document: ", e);
         alert("Something went wrong! Please try again.🤕")

@@ -54,7 +54,7 @@ const HomeScreen = ({navigation}) => {
       await signInWithCredential(auth, credential);
       setModalVisible(false)
       const token = auth.currentUser.uid;
-      const userRef = doc(firestore, "users", token);
+      const userRef = doc(firestore, "users", phoneNumber);
 
       const readUser = await runTransaction(firestore, async (transaction) => {
         const user = await transaction.get(userRef);
@@ -65,6 +65,7 @@ const HomeScreen = ({navigation}) => {
           })
         }else{
           navigation.replace('Main', {
+            paramKey: phoneNumber,
             paramToken: token
           })
         }
@@ -91,7 +92,7 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.loginView}>
           <Text style={styles.loginText}>WELCOME👋🏽</Text>
           <Text style={styles.textInfo}>Enter Your Phone Number:</Text>
-          <TextInput style={styles.textInput} placeholder={'+11234567899'}
+          <TextInput keyboardType='phone-pad' style={styles.textInput} placeholder={'+11234567899'}
             onChangeText={(text) => addPhoneNumber(text)}/>
           <ButtonCustom text={'GET OTP'} onPress={() => GetOTP()}/>
           <Image style={styles.imgLogin} source={require('../assets/img/signin.png')}/>
