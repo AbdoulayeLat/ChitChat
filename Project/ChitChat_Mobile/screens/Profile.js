@@ -31,8 +31,6 @@ const Profile = ({ route, navigation}) => {
     return <AppLoading/>;
   }
 
-  handleEditable = () => this.setState({ editable: true })
-
   //Get Data from Firestore DBf
   getDoc(doc(firestore, "users", phoneNumber)).then(docSnap => {
     if (docSnap.exists()) {
@@ -60,9 +58,6 @@ const Profile = ({ route, navigation}) => {
           <Image style={styles.profilepicture} source={{uri: imageURL}} />
           <Text style={styles.name}>{firstName + " " + lastName}</Text>
           <Text style={styles.phoneNumber}>{phoneNumber}</Text>
-        </View>
-        <View style={styles.optionView}>
-          
         </View>
       </View>
     </SafeAreaView>

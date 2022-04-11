@@ -1,1 +1,0 @@
-{"version":3,"sources":["static/css/home.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"home.3c5511aa.css","sourceRoot":"../src","sourcesContent":["html {\n  scroll-behavior: smooth;\n  font-family: Helvetica, sans-serif, Arial;\n}\n\nbody {\n  margin: 0 auto;\n  background-color: #222;\n}\n"]}

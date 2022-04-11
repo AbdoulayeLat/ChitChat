@@ -3,11 +3,12 @@ import React, {useEffect} from 'react';
 import Colors from '../../utils/Colors';
 import * as Contacts from 'expo-contacts';
 import ButtonCustom from '../../components/ButtonCustom';
-import {collection, addDoc, doc, setDoc, getDoc, query, orderBy, onSnapshot, where } from 'firebase/firestore';
+import {collection, addDoc, doc, setDoc, getDocs, getDoc, query, orderBy, onSnapshot, where } from 'firebase/firestore';
 import { auth, firestore, storage } from '../../firebase';
 import { async } from '@firebase/util';
 
 const Contact = ({route,navigation}) => {
+  const userUID = auth.currentUser.uid;
   const [phoneNumber, setPhoneNumber] = React.useState('+1');
   const userPhoneNumber = route.params.phoneNumber;
 
@@ -30,7 +31,7 @@ const Contact = ({route,navigation}) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <Text style={styles.infoText}>Who do you want to chat with:</Text>
-          <TextInput style={styles.textInput} keyboardType={'phone-pad'} placeholder='+11234567899' onChangeText={(text) => setPhoneNumber(text)}/>
+          <TextInput style={styles.textInput} keyboardType={'phone-pad'} placeholder='+11234567899' onChangeText={(text) => setPhoneNumber(text.replace(/ /g, ''))}/>
           <ButtonCustom text={'Enter Chat'} onPress={() => checkUser()}/>
         </View>
       </TouchableWithoutFeedback>
@@ -39,10 +40,6 @@ const Contact = ({route,navigation}) => {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   safeAreacontainer:{
     alignItems: 'center',
     justifyContent: 'center',

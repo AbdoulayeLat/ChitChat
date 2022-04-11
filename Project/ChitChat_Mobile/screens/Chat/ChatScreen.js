@@ -7,12 +7,11 @@ import { collection, addDoc, doc, setDoc, getDoc, query, orderBy, onSnapshot, wh
 import { ref, getDownloadURL } from '@firebase/storage';
 import { GiftedChat, InputToolbar } from 'react-native-gifted-chat';
 import Colors from '../../utils/Colors';
-import { styles } from 'react-native-circular-progress-indicator/src/circularProgressWithChild';
-import { async } from '@firebase/util';
 import { useEffect } from 'react';
 
 const ChatScreen = ({ route, navigation }) => {
     const [messages, setMessages] = useState([]);
+    const [friendName, setFriendName] = useState();
     const token = auth.currentUser.uid;
     const [imageURL, setImageURL] = React.useState();
     const phoneNumber = route.params.userPhoneNumber;
@@ -36,7 +35,7 @@ const ChatScreen = ({ route, navigation }) => {
     .catch((error) => {
       console.log(error)
     });
-
+    
     useLayoutEffect(() => {
         navigation.setOptions({
           headerRight: () => (
@@ -48,13 +47,20 @@ const ChatScreen = ({ route, navigation }) => {
                 <Text style={{color: 'white', fontWeight:'bold', fontSize:18}}>Logout</Text>
             </TouchableOpacity>
           ),
-          title: friendPhoneNumber,
+          title: friendName,
           headerStyle:{
             backgroundColor: Colors.Primary,
           }
         })
       }, [navigation]);
       
+      getDoc(doc(firestore, "users", friendPhoneNumber)).then(docSnap => {
+        if (docSnap.exists()) {
+          setFriendName(docSnap.get("firstName")+" "+docSnap.get("lastName"))
+        } else {
+          console.log("No such document!");
+        }
+      })
       useEffect(() => {
         const q = query(collection(firestore, 'chats/'+phoneNumber+"/"+friendPhoneNumber.toString()), orderBy('createdAt', 'desc'));
         const unsubscribe = onSnapshot(q, (snapshot) => setMessages(
@@ -70,11 +76,8 @@ const ChatScreen = ({ route, navigation }) => {
         };
     })
 
-    const onSend = useCallback((messages = [], phoneNumber) => {
+    const onSend = useCallback( (messages = [], phoneNumber, friendName, friendPhoneNumber) => {
         const { _id, createdAt, text, user} = messages[0]
-        setDoc(doc(firestore, 'chats/'+phoneNumber), {
-          uid: auth.currentUser.uid
-        });
         addDoc(collection(firestore, 'chats/'+phoneNumber+"/"+friendPhoneNumber), { _id, createdAt,  text, user });
         addDoc(collection(firestore, 'chats/'+friendPhoneNumber+"/"+phoneNumber), { _id, createdAt,  text, user });
     }, []);
@@ -98,8 +101,9 @@ const ChatScreen = ({ route, navigation }) => {
       <GiftedChat
           messages={messages}
           showAvatarForEveryMessage={true}
-          onSend={messages => onSend(messages, phoneNumber)}
+          onSend={messages => onSend(messages, phoneNumber, friendName, friendPhoneNumber)}
           isLoadingEarlier={true}
+          renderUsernameOnMessage={true}
           showUserAvatar={true}
           placeholder={"Chat Away..."}
           renderInputToolbar={props => customtInputToolbar(props)}

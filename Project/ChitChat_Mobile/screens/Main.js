@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import React from 'react';
 import Profile from './Profile';
 import ChatScreen from './Chat/ChatScreen';
@@ -38,27 +38,27 @@ const Main = ({route, navigation}) => {
                 backgroundColor: Colors.Secondary,
                 position: 'absolute',
                 bottom: 20,
-                left: 15,
-                right: 15,
+                left: Platform.OS == "android" ? 10 : 15,
+                right: Platform.OS == "android" ? 10 : 15,
                 elevation: 0,
                 borderRadius: 20,
-                height: 80
+                height: Platform.OS == "android" ? 60 : 80
             },
             tabBarIconStyle:{
-                marginTop: 20
+                marginTop: Platform.OS == "android" ? 10 : 20
             }
         })}
     >
         <Tab.Screen name='Profile' component={Profile} options={{
             headerShown: false,
             tabBarIcon: ({focused, color}) => (
-                <Feather name="user" size={30} color={focused ? 'white' : 'gray'} />
+                <Feather name="user" size={Platform.OS == "android" ? 40 : 30} color={focused ? 'white' : 'gray'} />
             ), 
         }} initialParams={{phoneNumber, token}}/>
         <Tab.Screen name='Chat' component={Contact} options={{
             headerShown: false,
             tabBarIcon: ({focused, color}) => (
-                <Ionicons name="chatbox-ellipses" size={30} color={focused ? 'white' : 'gray'} />
+                <Ionicons name="chatbox-ellipses" size={Platform.OS == "android" ? 40 : 30} color={focused ? 'white' : 'gray'} />
             ), 
         }} initialParams={{phoneNumber:phoneNumber, token:token}}/>
     </Tab.Navigator>

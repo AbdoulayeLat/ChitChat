@@ -93,7 +93,7 @@ const HomeScreen = ({navigation}) => {
           <Text style={styles.loginText}>WELCOME👋🏽</Text>
           <Text style={styles.textInfo}>Enter Your Phone Number:</Text>
           <TextInput keyboardType='phone-pad' style={styles.textInput} placeholder={'+11234567899'}
-            onChangeText={(text) => addPhoneNumber(text)}/>
+            onChangeText={(text) => addPhoneNumber(text.replace(/ /g, ''))}/>
           <ButtonCustom text={'GET OTP'} onPress={() => GetOTP()}/>
           <Image style={styles.imgLogin} source={require('../assets/img/signin.png')}/>
           {/* OTP Modal */}
