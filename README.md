@@ -1,4 +1,4 @@
-# ChitChat
+# ChitChat - Multi-platform Messaging Application
 
 ## CSI 4900 - Project
 ### Professor
