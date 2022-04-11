@@ -6,20 +6,19 @@ Amy Felty
 ### Supervisor
 Stephane Some
 ### Students
-* Ange Joel Adonis
-* Abdoulaye Ndiaye
-* Cheikh Ndoye
+* Adoni Adonis Ange Joel
+* Abdoulaye Lat Ndiaye
+* Cheikh Bassirou Ndoye
 
 # Web Application 
 
 To run our web application, open a terminal in [ChitChat_Web](Project/ChitChat_Web)
 
 Run on terminal: 
-`npm install`
-`npm run dev`
+`expo web`
 
-Then open your web-browser and open: 
-`localhost:1234`
+That should create a server hosting the web application, you can then enter the localhost on your web browser
+
 
 # Mobile Application
 
