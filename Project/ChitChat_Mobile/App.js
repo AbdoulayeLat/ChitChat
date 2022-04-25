@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
 import ChatScreen from './screens/Chat/ChatScreen';
@@ -13,11 +13,12 @@ import {
   Text,
   TextInput,
   ActivityIndicator,
-  LogBox
+  LogBox,
 } from 'react-native';
 
 import Profile from './screens/Profile';
-import { HeaderBackButton } from 'react-navigation-stack';
+import QRcode from './screens/QRcode';
+import {HeaderBackButton} from 'react-navigation-stack';
 
 LogBox.ignoreAllLogs();
 
@@ -34,6 +35,11 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="QRCode"
+          component={QRcode}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
           name="Registration"
           component={RegistrationScreen}
           options={{headerShown: false}}
@@ -46,12 +52,12 @@ function App() {
         <Stack.Screen
           name="ChatScreen"
           component={ChatScreen}
-          options = {{
+          options={{
             headerShadowVisible: false,
-            headerTintColor: 'white'
+            headerTintColor: 'white',
           }}
         />
-      </Stack.Navigator> 
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

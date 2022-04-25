@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import {Button} from 'react-native-elements';
 import Contacts from 'react-native-contacts';
 import Colors from '../utils/Colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -18,6 +19,7 @@ import {Roboto_400Regular, Roboto_500Medium} from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {color} from 'react-native-reanimated';
 
 const Profile = ({route, navigation}) => {
   const user = auth.currentUser;
@@ -59,11 +61,31 @@ const Profile = ({route, navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View ccessible={true} style={styles.pictureView}>
+      <View accessible={true} style={styles.pictureView}>
         <View style={styles.infoView}>
           <Image style={styles.profilepicture} source={{uri: imageURL}} />
           <Text style={styles.name}>{firstName + ' ' + lastName}</Text>
           <Text style={styles.phoneNumber}>{phoneNumber}</Text>
+          <View style={styles.objext}>
+            <Button
+              icon="qrcode"
+              backgroundColor={Colors.Secondary}
+              title="Scan QR Code"
+              onPress={() => navigation.navigate('QRCode')}
+              buttonStyle={{
+                borderColor: 'rgba(78, 116, 289, 1)',
+                backgroundColor: '#04d3af',
+              }}
+              type="outline"
+              raised
+              titleStyle={{color: 'black'}}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -71,6 +93,14 @@ const Profile = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
+  objext: {
+    backgroundColor: Colors.Secondary,
+    alignItems: 'center',
+    borderRadius: 30,
+    width: '100%',
+    height: 350,
+    marginTop: 50,
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.Primary,
